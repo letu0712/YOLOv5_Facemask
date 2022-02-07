@@ -2,6 +2,7 @@ import torch
 import cv2
 import numpy as np
 import time
+import os
 
 model = torch.hub.load('ultralytics/yolov5', model="custom", path='best.pt')
 # device = torch.device("cuda")
@@ -15,6 +16,10 @@ path_storage = "Warning/"
 prev_frame_time = 0
 new_frame_time = 0
 count = 0
+
+if not os.path.exists(path_storage): 
+    os.mkdir("Warning")
+
 while video.isOpened():
     record = False
     ret, image = video.read()
