@@ -42,11 +42,12 @@ while video.isOpened():
             if probability > 50:
                 cv2.rectangle(image, (x1,y1), (x2,y2), colors[int(labels[i])], 2)
                 cv2.putText(image,  label +" "+str(probability)+"%", (x1,y1), font, 1, colors[int(labels[i])],2)
-            if count%100==0 and  label=="No Facemask":
-                print("Warning")
-                record = True
-            else:
-                print("Safety")
+            if count%100==0: 
+                if label=="No Facemask":
+                    print("Warning")
+                    record = True
+                else:
+                    print("Safety")
     current_time = time.ctime(time.time())
     
     cv2.putText(image, "FPS: "+str(int(fps)), (10,20), font, 0.8, (255,0,0),2)
